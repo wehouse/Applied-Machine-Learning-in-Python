@@ -60,4 +60,37 @@ def answer_three():
     svm_predicted = svm.predict(X_test)
     return svm.score(X_test, y_test), recall_score(y_test, svm_predicted), precision_score(y_test, svm_predicted)
 
-answer_three()
+
+# =============================================================================
+# Question 4
+# Using the SVC classifier with parameters {'C': 1e9, 'gamma': 1e-07}, what is the confusion matrix 
+# when using a threshold of -220 on the decision function. Use X_test and y_test.
+# 
+# This function should return a confusion matrix, a 2x2 numpy array with 4 integers.
+# =============================================================================
+
+def answer_four():
+    from sklearn.metrics import confusion_matrix
+    from sklearn.svm import SVC
+
+    svm_predicted = SVC(C=1e9,gamma=1e-07).fit(X_train, y_train).decision_function(X_test) > -220
+
+    return confusion_matrix(y_test, svm_predicted)
+
+# =============================================================================
+# Question 5
+# Train a logisitic regression classifier with default parameters using X_train and y_train.
+# 
+# For the logisitic regression classifier, create a precision recall curve and a roc curve using y_test 
+# and the probability estimates for X_test (probability it is fraud).
+# 
+# Looking at the precision recall curve, what is the recall when the precision is 0.75?
+# 
+# Looking at the roc curve, what is the true positive rate when the false positive rate is 0.16?
+# 
+# This function should return a tuple with two floats, i.e. (recall, true positive rate).
+# =============================================================================
+
+def answer_five():
+        
+    return 0.83, 0.94
